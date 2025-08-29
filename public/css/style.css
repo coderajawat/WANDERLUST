@@ -142,6 +142,17 @@ body {
   padding-right: 0;
 }
 
+.review-container{
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.card-layout{
+  width: 312px;
+}
+
 #map {
   height: 400px;
   width: 100%;
@@ -294,6 +305,12 @@ body {
 }
 
 /* Responsive adjustments */
+@media (max-width: 1400px) {
+  .card-layout{
+    width: 100%;
+  }
+}
+
 @media (max-width: 768px) {
   .filters-container {
     padding: 0 0.5rem;
@@ -316,6 +333,10 @@ body {
     padding: 0.25rem 0.5rem;
     height: 2.5rem;
     font-size: 0.85rem;
+  }
+
+  .card{
+    width: 100%;
   }
 }
 
