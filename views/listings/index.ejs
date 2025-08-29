@@ -1,0 +1,238 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="filter-scroll-wrapper">
+  <div class="filters-container">
+    <!-- Left Scroll Button -->
+    <button id="backBtn" class="slideBtn" aria-label="Scroll Left">
+      <img src="/images/left_arrow.png" alt="Left Arrow" />
+    </button>
+    <div id="filters">
+      <a
+        href="/listings?category=Trending"
+        class="filter <%= category === 'Trending' ? 'active-filter' : '' %>"
+      >
+        <div><i class="fa-solid fa-fire"></i></div>
+        <p>Trending</p>
+      </a>
+      <a
+        href="/listings?category=Rooms"
+        class="filter <%= category === 'Rooms' ? 'active-filter' : '' %>"
+      >
+        <div><i class="fa-solid fa-bed"></i></div>
+        <p>Rooms</p>
+      </a>
+      <a
+        href="/listings?category=Iconic cities"
+        class="filter <%= category === 'Iconic cities' ? 'active-filter' : '' %>"
+      >
+        <div><i class="fa-solid fa-mountain-city"></i></div>
+        <p>Iconic cities</p>
+      </a>
+      <a
+        href="/listings?category=Mountains"
+        class="filter <%= category === 'Mountains' ? 'active-filter' : '' %>"
+      >
+        <div><i class="fa-solid fa-mountain-sun"></i></div>
+        <p>Mountains</p>
+      </a>
+      <a
+        href="/listings?category=Castles"
+        class="filter <%= category === 'Castles' ? 'active-filter' : '' %>"
+      >
+        <div><i class="fa-solid fa-chess-rook"></i></div>
+        <p>Castles</p>
+      </a>
+      <a
+        href="/listings?category=Amazing Pools"
+        class="filter <%= category === 'Amazing Pools' ? 'active-filter' : '' %>"
+      >
+        <div><i class="fa-solid fa-person-swimming"></i></div>
+        <p>Amazing Pools</p>
+      </a>
+      <a
+        href="/listings?category=Cabin"
+        class="filter <%= category === 'Cabin' ? 'active-filter' : '' %>"
+      >
+        <div><i class="fa-solid fa-tents"></i></div>
+        <p>Cabin</p>
+      </a>
+      <a
+        href="/listings?category=Villa"
+        class="filter <%= category === 'Villa' ? 'active-filter' : '' %>"
+      >
+        <div><i class="fa-solid fa-house"></i></div>
+        <p>Villa</p>
+      </a>
+      <a
+        href="/listings?category=Cottage"
+        class="filter <%= category === 'Cottage' ? 'active-filter' : '' %>"
+      >
+        <div><i class="fa-solid fa-house-chimney"></i></div>
+        <p>Cottage</p>
+      </a>
+      <a
+        href="/listings?category=Apartment"
+        class="filter <%= category === 'Apartment' ? 'active-filter' : '' %>"
+      >
+        <div><i class="fa-solid fa-building"></i></div>
+        <p>Apartment</p>
+      </a>
+      <a
+        href="/listings?category=Resort"
+        class="filter <%= category === 'Resort' ? 'active-filter' : '' %>"
+      >
+        <div><i class="fa-solid fa-hotel"></i></div>
+        <p>Resort</p>
+      </a>
+      <a
+        href="/listings?category=Farms"
+        class="filter <%= category === 'Farms' ? 'active-filter' : '' %>"
+      >
+        <div><i class="fa-solid fa-cow"></i></div>
+        <p>Farms</p>
+      </a>
+      <a
+        href="/listings?category=Arctic"
+        class="filter <%= category === 'Arctic' ? 'active-filter' : '' %>"
+      >
+        <div><i class="fa-solid fa-snowflake"></i></div>
+        <p>Arctic</p>
+      </a>
+      <a
+        href="/listings?category=Treehouse"
+        class="filter <%= category === 'Treehouse' ? 'active-filter' : '' %>"
+      >
+        <div><i class="fa-solid fa-tree"></i></div>
+        <p>Treehouse</p>
+      </a>
+      <a
+        href="/listings?category=Chalet"
+        class="filter <%= category === 'Chalet' ? 'active-filter' : '' %>"
+      >
+        <div><i class="fa-solid fa-house"></i></div>
+        <p>Chalet</p>
+      </a>
+      <a
+        href="/listings?category=Beach"
+        class="filter <%= category === 'Beach' ? 'active-filter' : '' %>"
+      >
+        <div><i class="fa-solid fa-umbrella-beach"></i></div>
+        <p>Beach</p>
+      </a>
+      <a
+        href="/listings?category=Domes"
+        class="filter <%= category === 'Domes' ? 'active-filter' : '' %>"
+      >
+        <div><i class="fa-solid fa-igloo"></i></div>
+        <p>Domes</p>
+      </a>
+      <a
+        href="/listings?category=Boats"
+        class="filter <%= category === 'Boats' ? 'active-filter' : '' %>"
+      >
+        <div><i class="fa-solid fa-ship"></i></div>
+        <p>Boats</p>
+      </a>
+    </div>
+    <!-- Right Scroll Button -->
+    <button id="nextBtn" class="slideBtn" aria-label="Scroll Right">
+      <img src="/images/right_arrow.png" alt="Right Arrow" />
+    </button>
+    <div class="tax-toggle">
+      <div class="form-check-reverse form-switch">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          role="switch"
+          id="switchCheckDefault"
+        />
+        <label class="form-check-label" for="switchCheckDefault">
+          Display total after taxes
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+  <% if (allListings.length===0) { %>
+  <div class="mt-5 result">
+    <h5 class="text-muted">
+      Currently listing is not available for this search.
+    </h5>
+  </div>
+  <% } else { %> <% for(let listing of allListings) { %>
+  <a href="/listings/<%= listing._id %>" class="listing-link">
+    <div class="card col listing-card">
+      <img
+        src="<%= listing.image?.url || 'https://res.cloudinary.com/dwtljl4ze/image/upload/v1752858300/wanderlust_DEV/worrn5xzcyrh7hfayano.jpg' %>"
+        class="card-img-top"
+        alt="<%= listing.image.filename %>"
+        style="height: 20rem"
+      />
+
+      <div class="card-img-overlay"></div>
+
+      <div class="card-body">
+        <p class="card-text">
+          <b> <%= listing.title %> </b> <br />
+          &#8377; <%= listing.price.toLocaleString("en-IN") %> / night
+          <i class="tax-info">&nbsp; +18% GST</i>
+          <br>
+          <span class="tax-info">Total: ₹<%= (listing.price * 1.18).toLocaleString("en-IN") %></span>
+        </p>
+      </div>
+    </div>
+  </a>
+  <% } %> <% } %>
+</div>
+
+<script>
+  let taxSwitch = document.getElementById("switchCheckDefault");
+  taxSwitch.addEventListener("click", () => {
+    let taxInfo = document.getElementsByClassName("tax-info");
+    for (info of taxInfo) {
+      if (info.style.display != "inline") {
+        info.style.display = "inline";
+      } else {
+        info.style.display = "none";
+      }
+    }
+  });
+
+  // Filter scroll buttons
+  const backBtn = document.getElementById("backBtn");
+  const nextBtn = document.getElementById("nextBtn");
+  const filters = document.getElementById("filters");
+  const SCROLL_AMOUNT = 200;
+
+  backBtn.addEventListener("click", () => {
+    filters.scrollBy({ left: -SCROLL_AMOUNT, behavior: "smooth" });
+  });
+
+  nextBtn.addEventListener("click", () => {
+    filters.scrollBy({ left: SCROLL_AMOUNT, behavior: "smooth" });
+  });
+
+  // Disable buttons at edges
+  function updateButtons() {
+    const maxScrollLeft = filters.scrollWidth - filters.clientWidth;
+    backBtn.disabled = filters.scrollLeft <= 5;
+    nextBtn.disabled = filters.scrollLeft >= maxScrollLeft - 5;
+  }
+
+  filters.addEventListener("scroll", updateButtons);
+  window.addEventListener("resize", updateButtons);
+  requestAnimationFrame(updateButtons);
+
+  const url = new URL(window.location.href);
+  if (url.search) {
+    // Store search/category temporarily so it still works for the current page
+    const tempSearch = url.searchParams.get('q');
+    const tempCategory = url.searchParams.get('category');
+
+    // Only redirect on a "refresh" (not first visit via link)
+    if (performance.getEntriesByType("navigation")[0].type === "reload") {
+      window.location.href = '/listings';
+    }
+  }
+</script>
